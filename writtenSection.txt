@@ -2,27 +2,60 @@ Answer each question in a written format
 
 1. What does semantic HTML mean?
 
+    Semantic HTML is HTML code that uses element names that are descriptive and have meaning to both the browser and the developer. For example, instead of using many <div> elements to section your content, you can use elements such as <header>, <main>, <section>, <aside>, <footer>, etc. This makes the code easier to read and allows search engines to better understand your content.
+
 2. What is the box model?
+
+    You can imagine a web page to be made up of a bunch of boxes. Each HTML element makes up an individual "box". When styling elements using CSS, the box model allows you to control the spacing around the content of that "box". The box model has 4 different parts to it--the actual content, Padding, Border, and Margin. Content is the actual content (text, images, etc.). Padding is the area around the content, providing transparent space between it and the border--it pushes the content of the element inward or toward the center of the box. The border goes around the padding and can be styled many different ways and can be given a radius, width and color. The Margin works similarly to padding, but it provides transparent space on the outside of the border--it pushes surrounding elements outward or away from its element.
 
 3. What is the difference between IDs and Classes?
 
+    When using class selectors in CSS, you can declare a set of styling rules which will be applied to any HTML element that has that class assigned to it. A class can be assigned to multiple elements and an element can be assigned multiple classes; IDs, however, must be unique. This means that an ID name must be tied to only one single HTML element. It goes the other way around too--each element can only be assigned one ID. You should use classes when you want to apply a block of styling declarations to multiple elements in your application. If you wish to apply styling that is specific to a single element only, or when using jQuery to manipulate a specific element on the DOM, use the ID selector.
+
 4. What does the z-index do?
+
+    If you imagine your webpage as a graph, it has 3 axes or dimensions--X(horizontal, Y(vertival), and Z(depth). Z-index is a CSS property whose value is a number that specifies the level that the element appears on the z axis. If an element has a greater z-index value than another, it will be 'stacked' ontop of the other. Z-index will only work on elements that have a 'position' CSS property defined (fixed, relative, absolute).
 
 5. Summarize what the keyword 'this' is used for?
 
+    The keyword 'this' is most often used within a function and always refers to (has the value of) an object--more specifically, the object that invokes the function where 'this' is used; therefore, the value of the 'this' keyword can change depending on the context of the executed function that contains the 'this' keyword. This allows us to reuse functions with different context. If we had one function and multiple objects with similar properties, we will want that function to work throughout all of the objects.
+
+    The context of the function can be determined through implicit and explicit binding. Implicit binding is most commonly used, and refers to what is 'left of the dot'. For example, when we see  obj.implicitFunction(), obj is the object that is 'left of the dot' when the function 'implicitFunction' is invoked. In this case, if the keyword 'this' was used in the function definition, it will refer to obj. the call, bind, and apply methods can be used to explicitly set the value of 'this'.
+
 6. What is a callback?
+
+    A callback is a function that is passed into another function as an argument to be executed within the function that it is passed into.
 
 7. What is a closure?
 
+    A closure is the combination of a function and the environment in which that function was declared. The environment includes local variables that were in scope at the time the closure was created. Closures allow us to create 'private' variables and methods in a sense, because once the closure is created, those variables cannot be manually changed from outside of it. 
+
 8. How does prototype work?
+
+    Every JavaScript Object has a prototype, which is an object itself that has properties and methods. The most common way to create a prototype is by using a constructor function. By using the prototype property (.prototype), you can add properties and methods to an existing prototype--whether that be a custom prototype that was made with a constructor function, or a prototype of a native JavaScript object such as a String, or an Array. 
 
 9. What is MVC?
 
+    MVC is a JavaScript architectual pattern that splits an application into three components-- the Model, View, and Controller. The Model is the component that deals with the data. It handles the logic that gets and manipulates data and then passes that data back and forth from the controller and a database for example. The View component is  what displays the application to the user--it is what the user sees and interacts with. The controller is the 'middle-man' component; it sends commands to the Model to update stored data, and it also sends commands to the view to change the data that is displayed to the user. A popular framework that uses the MVC pattern is AngularJS. 
+
 10. What is the component lifecycle?
+
+    In Component-Based Architecture, the application is made up of components--each containing the design, logic, and helper methods that relate to it. Component lifecycle is the stages that each component goes through. There are 4 main stages in a React Component's lifecycle--initialization, mounting, updating, and unmounting. React provides something called lifecycle methods that allow us to know when a certain stage occurs and do things at an appropriate time.
 
 11. What is REST?
 
+    REST is a set of instructions or rules of how computers should communicate with eachother accross the internet. A RESTful API uses HTTP requests to get, put, post, and delete data. 
+
 12. Name three ways of getting data from the URL using express
+
+    req.params-- the param are found in the path portion of the URL(after the slash) ex. in express:
+        app.get('/api/users/:id', function(req, res){...req.params.id...});  id is the paramater in this case.
+
+    req.query-- the query is found after the ? in the url. example in express:
+        app.get('/api/user', function(req, res){...req.query.name...});
+        a GET request sent to /api/user?name=mason would give us access to req.query.name in express with a value of mason.
+
+    req.body-- requires body-parsing middleware. req.body contains key-valu paris of data submitted in the request body. 
 
 create table users (
 id serial,
@@ -34,8 +67,21 @@ email varchar(255)
 
 -Get all users:
 
+    SELECT *
+    FROM users;
+
 -Create a new user with the name of 'your name' and an email of 'fake@fake.com':
+
+    INSERT INTO users (name, email)
+    VALUES ('Mason', 'fake@fake.com');
 
 -Update the newly created user's name to 'Bobby Boy':
 
+    UPDATE users
+    SET name = 'Bobby Boy'
+    WHERE name = 'Mason';
+
 -Delete the newly updated user:
+
+    DELETE FROM users
+    WHERE name = 'Bobby Boy';
